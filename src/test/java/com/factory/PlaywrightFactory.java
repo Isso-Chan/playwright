@@ -1,4 +1,4 @@
-package com.qa.opencart.factory;
+package com.factory;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -88,7 +88,7 @@ public class PlaywrightFactory {
 	public Properties init_prop() {
 
 		try {
-			FileInputStream ip = new FileInputStream("./src/test/resources/config/config.properties");
+			FileInputStream ip = new FileInputStream(".src/test/resources/config/config.properties");
 			prop = new Properties();
 			prop.load(ip);
 		} catch (FileNotFoundException e) {

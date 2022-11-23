@@ -1,4 +1,4 @@
-package com.qa.opencart.constants;
+package com.constants;
 
 public class AppConstants {
 	
