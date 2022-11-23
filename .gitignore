@@ -3,6 +3,7 @@ screenshots/
 screenshot/
 test-output/
 build/
+your-result-folder/
 
 application.log
 ##############################
@@ -16,6 +17,7 @@ application.log
 *.nar
 hs_err_pid*
 activityLog.log
+logfile.log
 ##############################
 ## Maven
 ##############################

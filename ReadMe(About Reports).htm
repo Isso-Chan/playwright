@@ -1,0 +1,32 @@
+
+1. Reports are generated in 2 ways;
+    a. In TestRunner class
+    b. With maven command
+
+2. Before executing tests, type "mvn clean" in cmd (in your project root folder)
+
+3. After executing tests, 2 different reports are generated under "target" folder;
+    -HTML reports (
+        -Default html reports
+        -Failed html report(After executing FailedTestRunner)
+
+    -Allure results (All settings were done according to following video.)
+        -> https://www.youtube.com/watch?v=rLwMK4D2aPI
+
+        (1) Just type-> "mvn clean test" in the terminal (with cmd, first move to your project folder!)
+        (2) Then reports folder will be generated under TARGET root as allure-results
+        (3) Go in Target folder in cmd (or in Terminal of IntelliJ)
+        (4) Type -> "allure serve allure-results" and click enter (if report displays nothing,
+            then type first "scoop install allure", then apply step 3 again)
+        (5) Report will be opened in your default browser
+
+            *** To generate html file of allure report:
+            -move to target folder (not in allure-results) on CMD prompt
+            -type "allure generate"
+            -Then "allure-report" will be created inside target folder. This may be uploaded to netlify.com
+            to be displayed/stored.
+
+            * To show historical trend in allure report;
+            -Copy history folder from "allure-report" folder, which can be created after first execution
+              and contains info of previous runs, and paste inside "allure-results" folder, before execution of tests.
+

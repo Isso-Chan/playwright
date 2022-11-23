@@ -1,87 +1,119 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>playwright</groupId>
+    <artifactId>playwright</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    <properties>
+        <aspectj.version>1.8.10</aspectj.version>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <cucumber.version>6.8.2</cucumber.version>
+        <!--Defines total thread, increase if you want to test with more browser at the same time-->
+        <thread>4</thread>
+        <isPerCPU>false</isPerCPU>
+    </properties>
 
-	<groupId>PlaywrightPOMSeries</groupId>
-	<artifactId>PlaywrightPOMSeries</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber6-jvm -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber6-jvm</artifactId>
+            <version>2.13.6</version>
+        </dependency>
 
-	<name>PlaywrightPOMSeries</name>
-	<!-- FIXME change it to the project's website -->
-	<url>http://www.example.com</url>
+        <dependency>
+            <groupId>com.microsoft.playwright</groupId>
+            <artifactId>playwright</artifactId>
+            <version> 1.28.1</version>
+        </dependency>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<extentreports-version>5.0.8</extentreports-version>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>6.8.2</version>
+        </dependency>
 
-	</properties>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>6.8.2</version>
+            <scope>compile</scope>
+        </dependency>
 
-	<dependencies>
+        <!--Writes logs on terminal-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.12</version>
+        </dependency>
 
-		<dependency>
-			<groupId>com.microsoft.playwright</groupId>
-			<artifactId>playwright</artifactId>
-			<version>1.25.0</version>
-		</dependency>
+        <!--To make more assertion one and other without fail -SoftAssertions -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.24.2</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.14.3</version>
-		</dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <!--Allure report configurations-->
+                    <argLine>
+                        -javaagent:"${settings.localRepository}\org\aspectj\aspectjweaver\${aspectj.version}\aspectjweaver-${aspectj.version}.jar"
+                        -Dcucumber.options="--plugin io.qameta.allure.cucumberw6jvm.AllureCucumber6Jvm"
+                    </argLine>
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                        <allure.link.issue.pattern>https://example.org/browse/{}</allure.link.issue.pattern>
+                        <allure.link.tms.pattern>https://example.org/browse/{}</allure.link.tms.pattern>
+                    </systemPropertyVariables>
+                    <!-- Enables us parallel testing on more than one thread -->
+                    <parallel>methods</parallel>
+                    <threadCount>${thread}</threadCount>
+                    <perCoreThreadCount>${isPerCPU}</perCoreThreadCount>
+                    <useUnlimitedThreads>false</useUnlimitedThreads>
+                    <!-- ************************************************************ -->
+                    <runOrder>Alphabetical</runOrder>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <!-- If 1, it reruns after execution for failed test cases again: REPORT SHOWS ONLY THEIR RESULT!-->
+                    <rerunFailingTestsCount>0</rerunFailingTestsCount>
 
-		<dependency>
-			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports</artifactId>
-			<version>${extentreports-version}</version>
-		</dependency>
-
-
-
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.20</version>
-
-				<configuration>
-					<forkCount>3</forkCount>
-					<reuseForks>true</reuseForks>
-<!--					<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>-->
-					<suiteXmlFiles>
-						<suiteXmlFile>src/test/resources/testrunners/testng_regressions.xml</suiteXmlFile>
-						<!-- <suiteXmlFile>${suiteXmlFile}</suiteXmlFile> -->
-
-					</suiteXmlFiles>
-
-
-
-				</configuration>
-			</plugin>
-
-
-
-
-
-		</plugins>
-	</build>
+                    <includes>
+                        <!-- *Runner means, it will include runner classes name ends with runner.-->
+                        <include>**/*Runner*.java</include>
+                        <!-- in case of failure of any scenario, just failed ones executed  -->
+                        <include>**/*FailedTestRunner.java</include>
+                    </includes>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 </project>
