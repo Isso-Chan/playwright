@@ -20,7 +20,7 @@ public class PlaywrightFactory {
 	Browser browser;
 	BrowserContext browserContext;
 	Page page;
-	Properties prop;
+	static Properties prop;
 
 	private static ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();//ThreadLocal copies our browser
 	private static ThreadLocal<BrowserContext> tlBrowserContext = new ThreadLocal<>();
@@ -85,10 +85,10 @@ public class PlaywrightFactory {
 	/**
 	 * this method is used to initialize the properties from config file
 	 */
-	public Properties init_prop() {
+	public static Properties init_prop() {
 
 		try {
-			FileInputStream ip = new FileInputStream("./src/test/resources/config/config.properties");
+			FileInputStream ip = new FileInputStream("./src/test/resources/configuration.properties");
 			prop = new Properties();
 			prop.load(ip);
 		} catch (FileNotFoundException e) {
@@ -111,7 +111,7 @@ public class PlaywrightFactory {
 		//getPage().screenshot(new Page.ScreenshotOptions().setPath(Paths.get(path)).setFullPage(true));
 		
 		byte[] buffer = getPage().screenshot(new Page.ScreenshotOptions().setPath(Paths.get(path)).setFullPage(true));
-		String base64Path = Base64.getEncoder().encodeToString(buffer);
+		String base64Path = Base64.getEncoder().encodeToString(buffer);//Base64, Jenkins'te raporlama type icin gerekiyor. Yoksa orada hata veriyor
 		
 		return base64Path;
 	}

@@ -1,0 +1,40 @@
+
+This hybrid framework was created to execute both TestNG and cucumber tests
+
+
+There is a TESTRUNNER package for runners.
+    - All tests (TestNG and Cucumber together): can be executed by running "testng-resgressions.xml". It enables parallel testing
+    - Just Cucumber tests:
+        - They were also added in testng-resgressions.xml file and can be executed together with TestNG tests
+        - They can be executed by running "CucumberTestsRunner" class. (Runs tests one-by-one)
+        - By using maven -> "mvn verify". This will enable parallel testing as well.
+
+
+There is only one target folder for RESULTS.
+    -All tests (TestNG and Cucumber together) results will be saved under "target/TestNGTestsResults/".
+    -There are 2 alternatives for Cucumber test results.
+        - If tests are executed by starting on "CucumberTestsRunner" class, then just a cucumbertests-html-report
+          file will be generated under target folder
+        - If tests are executed By using maven command, then they will be saved under "target/CucumberTestsReports/"
+            In case of failing scenario, rerun.txt file will be generated under target folder.
+            These failing ones can be executed again just by running FailedCukesTestsRunner class again.
+            After execution, failedCucumberTests.html file will be generated just for re-executed tests under target folder.
+
+        -Allure results (All settings were done according to following video.)
+            -> https://www.youtube.com/watch?v=rLwMK4D2aPI
+
+            (1) Just type-> "mvn clean test" in the terminal (with cmd, first move to your project folder!)
+            (2) Then reports folder will be generated under TARGET root as allure-results
+            (3) Go in Target folder in cmd (or in Terminal of IntelliJ)
+            (4) Type -> "allure serve allure-results" and click enter (if report displays nothing, then type first "scoop install allure", then apply step 3 again)
+            (5) Report will be opened in your default browser
+
+                *** To generate html file of allure report:
+                -move to target folder (not in allure-results) on CMD prompt
+                -type "allure generate --clean allure-results"
+                -Then "allure-report" will be created inside target folder. This may be uploaded to netlify.com
+                to be displayed/stored.
+
+                * To show historical trend in allure report;
+                -Copy history folder from "allure-report" folder, which can be created after first execution and contains info of previous runs,
+                and paste inside "allure-results" folder, before execution of tests.

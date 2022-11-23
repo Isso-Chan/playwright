@@ -19,7 +19,7 @@ import static com.qa.opencart.factory.PlaywrightFactory.takeScreenshot;
 
 public class ExtentReportListener implements ITestListener {
 
-	private static final String OUTPUT_FOLDER = "./target/results/";//Rapor burada olusturuluyor
+	private static final String OUTPUT_FOLDER = "./target/TestNGTestsResults/";//Raport path
 	private static final String FILE_NAME = "TestExecutionReport.html";
 
 	private static ExtentReports extent = init();
@@ -42,15 +42,15 @@ public class ExtentReportListener implements ITestListener {
 		
 		extentReports = new ExtentReports();
 		ExtentSparkReporter reporter = new ExtentSparkReporter(OUTPUT_FOLDER + FILE_NAME);
-		reporter.config().setReportName("Open Cart Automation Test Results");
+		reporter.config().setReportName("XYZ Project Test Results");
 		extentReports.attachReporter(reporter);
-		extentReports.setSystemInfo("System", "MAC");
-		extentReports.setSystemInfo("Author", "Naveen AutomationLabs");
+		extentReports.setSystemInfo("System", "Windows 10");
+		extentReports.setSystemInfo("Author", "Isso Chan");
 		extentReports.setSystemInfo("Build#", "1.1");
 		extentReports.setSystemInfo("Team", "OMS");
-		extentReports.setSystemInfo("Customer Name", "NAL");
+		extentReports.setSystemInfo("Customer Name", "xyz");
 
-		//extentReports.setSystemInfo("ENV NAME", System.getProperty("env"));
+		extentReports.setSystemInfo("ENV NAME", System.getProperty("env"));
 
 		return extentReports;
 	}
