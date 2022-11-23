@@ -20,14 +20,14 @@ public class BaseTest {
 	protected HomePage homePage;
 	protected LoginPage loginPage;
 
-	@Parameters({ "browser" })
+	@Parameters({ "browser" })//This will get the values of browsers written in regression.xml file and pass it to browserName in setUp()
 	@BeforeTest
 	public void setup(String browserName) {
 		pf = new PlaywrightFactory();
 
 		prop = pf.init_prop();
 
-		if (browserName != null) {
+		if (browserName != null) {//if browser is defined inside xml file, then use it, otherwise use the one defined in config.properties file
 			prop.setProperty("browser", browserName);
 		}
 
