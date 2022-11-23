@@ -111,7 +111,7 @@ public class PlaywrightFactory {
 		//getPage().screenshot(new Page.ScreenshotOptions().setPath(Paths.get(path)).setFullPage(true));
 		
 		byte[] buffer = getPage().screenshot(new Page.ScreenshotOptions().setPath(Paths.get(path)).setFullPage(true));
-		String base64Path = Base64.getEncoder().encodeToString(buffer);
+		String base64Path = Base64.getEncoder().encodeToString(buffer);//Base64, Jenkins'te raporlama type icin gerekiyor. Yoksa orada hata veriyor
 		
 		return base64Path;
 	}
