@@ -15,21 +15,12 @@ import org.junit.Assert;
 import java.util.Properties;
 
 
-public class LoginCucumberTest {
+public class LoginCucumberTest extends BaseTest {
 
-    Page page;
-    protected HomePage homePage;
-    protected LoginPage loginPage;
-
-    public LoginCucumberTest() {
-        this.page = PlaywrightFactory.getPage();
-        homePage = new HomePage(page);
-        loginPage = new LoginPage(page);
-    }
 
     @Given("User launched SwagLabs application")
     public void user_launched_swag_labs_application() {
-//        page.navigate("https://www.saucedemo.com/");
+        page.navigate(prop.getProperty("url").trim());
 
     }
     @When("User verify the Page title")
@@ -40,15 +31,6 @@ public class LoginCucumberTest {
     @When("User logged in the app using username {string} and password {string}")
     public void user_logged_in_the_app_using_username_and_password(String username, String password) {
         loginPage.loginIntoApplication(username, password);
-    }
-    @Then("User verify the product name {string}")
-    public void user_verify_the_product_name(String productname) {
-        String productName = homePage.getProductName();
-        Assert.assertEquals(productName, productname);
-    }
-    @Then("User logout from the application")
-    public void user_logout_from_the_application() {
-        loginPage.logoutApplication();
     }
 
 

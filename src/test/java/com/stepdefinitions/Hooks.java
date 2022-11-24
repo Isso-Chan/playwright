@@ -20,21 +20,14 @@ public class Hooks {
     @Before
     public void setup() {
         pf = new PlaywrightFactory();
-
         prop = pf.init_prop();
-
-//        if (browserName != null) {//if browser is defined inside xml file, then use it, otherwise use the one defined in config.properties file
-            prop.setProperty("browser", prop.getProperty("browser"));
-//        }
-
+        prop.setProperty("browser", prop.getProperty("browser"));
         page = pf.initBrowser(prop);
     }
-//
     @After
     public void tearDown(Scenario scenario) {
         if (scenario.isFailed()) {
             final byte[] screenshot = PlaywrightFactory.takeScreenshot().getBytes();
-//                    ((TakesScreenshot) MyDriver.get()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(
                     screenshot,
                     "image/png",

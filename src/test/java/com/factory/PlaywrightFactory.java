@@ -15,7 +15,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 
 public class PlaywrightFactory {
-	Properties prop;
+	static Properties prop;
 
 	private static ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();//ThreadLocal copies our browser
 	private static ThreadLocal<BrowserContext> tlBrowserContext = new ThreadLocal<>();
@@ -41,7 +41,7 @@ public class PlaywrightFactory {
 	public Page initBrowser(Properties prop) {
 
 		String browserName = prop.getProperty("browser").trim();
-		System.out.println("browser name is : " + browserName);
+		System.out.println("Browser name is : " + browserName);
 
 		// playwright = Playwright.create();
 		tlPlaywright.set(Playwright.create());//set a local copy of Playwright
@@ -72,7 +72,7 @@ public class PlaywrightFactory {
 
 		tlBrowserContext.set(getBrowser().newContext());
 		tlPage.set(getBrowserContext().newPage());
-		getPage().navigate(prop.getProperty("url").trim());
+//		getPage().navigate(prop.getProperty("url").trim());
 		return getPage();
 
 	}
@@ -80,7 +80,7 @@ public class PlaywrightFactory {
 	/**
 	 * this method is used to initialize the properties from config file
 	 */
-	public Properties init_prop() {
+	public static Properties init_prop() {
 
 		try {
 			FileInputStream ip = new FileInputStream("src/test/resources/config/config.properties");

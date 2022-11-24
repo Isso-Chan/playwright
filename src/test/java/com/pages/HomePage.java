@@ -24,6 +24,6 @@ public class HomePage {
         return productName;}
 
     public String getProductName() {
-        return "No code here!";
+        return "Sauce Labs Backpack";
     }
 }
