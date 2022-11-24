@@ -5,6 +5,17 @@
 	<groupId>playwright</groupId>
 	<artifactId>playwright</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<maven.compiler.source>15</maven.compiler.source>
+		<maven.compiler.target>15</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!--Gets only one Browser, increase if you want to test with more browser at the same time-->
+		<thread>4</thread>
+		<isPerCPU>false</isPerCPU>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.microsoft.playwright</groupId>
@@ -25,17 +36,17 @@
 		<scope>compile</scope>
 	</dependency>
 		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber4-adapter -->
-		<dependency>
-			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports-cucumber4-adapter</artifactId>
-			<version>1.2.1</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.aventstack</groupId>-->
+<!--			<artifactId>extentreports-cucumber4-adapter</artifactId>-->
+<!--			<version>1.2.1</version>-->
+<!--		</dependency>-->
 		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
-		<dependency>
-			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports</artifactId>
-			<version>5.0.6</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.aventstack</groupId>-->
+<!--			<artifactId>extentreports</artifactId>-->
+<!--			<version>5.0.6</version>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -47,47 +58,108 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.7</version>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.testng</groupId>-->
+<!--			<artifactId>testng</artifactId>-->
+<!--			<version>6.14.3</version>-->
+<!--		</dependency>-->
 		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.14.3</version>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.22</version>
 		</dependency>
 	</dependencies>
 	<build>
+		<!-- To create runnable Jar file of project
+        <finalName>executable-ProjectFile</finalName>
+        <resources>
+            <resource>
+                <directory>src/test/resources</directory>
+            </resource>
+        </resources>-->
 		<plugins>
+			<!-- <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-assembly-plugin</artifactId>
+                 <version>2.2.1</version>
+                 <executions>
+                     <execution>
+                         <id>package-jar-with-dependencies</id>
+                         <phase>package</phase>
+                         <goals>
+                             <goal> single</goal>
+                         </goals>
+                         <configuration>
+                             <appendAssemblyId>false</appendAssemblyId>
+                             <descriptorRefs>
+                                 <descriptorRef>jar-with-dependencies</descriptorRef>
+                             </descriptorRefs>
+                             <archive>
+                                 <manifest>
+                                     <mainClass>de.OAMan.runners.TestRunner</mainClass>
+                                 </manifest>
+                             </archive>
+                         </configuration>
+                     </execution>
+                 </executions>
+             </plugin>-->
+
+			<!-- End of Jar file plugins-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
+				<version>3.5.1</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.2</version>
+				<configuration>
+					<!-- Enables us parallel testing on more than one thread -->
+					<parallel>methods</parallel>
+					<threadCount>${thread}</threadCount>
+					<perCoreThreadCount>${isPerCPU}</perCoreThreadCount>
+					<useUnlimitedThreads>false</useUnlimitedThreads>
+					<!-- ************************************************************ -->
+					<runOrder>Alphabetical</runOrder>
+					<testFailureIgnore>true</testFailureIgnore>
+					<!-- If 1, it reruns after execution for failed test cases again: REPORT SHOWS ONLY THEIR RESULT!-->
+					<rerunFailingTestsCount>0</rerunFailingTestsCount>
+
+					<includes>
+						<!-- *Runner means, it will include runner classes name ends with runner.-->
+						<include>**/*Runner*.java</include>
+						<!-- in case of failure of any scenario, just failed ones executed  -->
+						<include>**/*FailedTestRunner.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>5.0.0</version>
 				<executions>
 					<execution>
-						<phase>integration-test</phase>
+						<id>execution</id>
+						<phase>verify</phase>
 						<goals>
-							<goal>test</goal>
+							<goal>generate</goal>
 						</goals>
+						<configuration>
+							<projectName>IssoChan HTML Reports</projectName>
+							<outputDirectory>${project.build.directory}/myReports</outputDirectory>
+							<inputDirectory>${project.build.directory}</inputDirectory>
+							<jsonFiles>
+								<param>**/*cucumber.json</param>
+							</jsonFiles>
+							<classificationFiles>
+								<param>**/classifications/*.properties</param>
+							</classificationFiles>
+
+							<checkBuildResult>false</checkBuildResult>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<includes>
-						<include>**/*Runner*.class</include>
-					</includes>
-					<systemPropertyVariables>
-						<executionMode>Local</executionMode>
-						<browser>Chromium</browser>
-						<applicationUrl>https://www.saucedemo.com/</applicationUrl>
-						<remoteUrl></remoteUrl>
-					</systemPropertyVariables>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

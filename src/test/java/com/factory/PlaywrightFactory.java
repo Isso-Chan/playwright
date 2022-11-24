@@ -15,11 +15,6 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 
 public class PlaywrightFactory {
-
-	Playwright playwright;
-	Browser browser;
-	BrowserContext browserContext;
-	Page page;
 	Properties prop;
 
 	private static ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();//ThreadLocal copies our browser
@@ -88,7 +83,7 @@ public class PlaywrightFactory {
 	public Properties init_prop() {
 
 		try {
-			FileInputStream ip = new FileInputStream(".src/test/resources/config/config.properties");
+			FileInputStream ip = new FileInputStream("src/test/resources/config/config.properties");
 			prop = new Properties();
 			prop.load(ip);
 		} catch (FileNotFoundException e) {

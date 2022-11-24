@@ -9,7 +9,8 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/",
         glue = {"com/stepdefinitions"},
         plugin = {"pretty"},
-        dryRun = false)
+        dryRun = false,
+        tags = "@all")
 public class TestRunner {
 
 }

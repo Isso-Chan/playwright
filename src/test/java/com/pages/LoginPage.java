@@ -3,7 +3,7 @@ package com.pages;
 import com.microsoft.playwright.Page;
 
 public class LoginPage {
-    Page page;
+    private Page page;
 
 // Locator — — — -
 
