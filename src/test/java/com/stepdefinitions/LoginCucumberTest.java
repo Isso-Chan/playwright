@@ -17,20 +17,20 @@ import java.util.Properties;
 
 public class LoginCucumberTest {
 
-    PlaywrightFactory pf=new PlaywrightFactory();
-    protected Properties prop=pf.init_prop();;
-    Page page=pf.initBrowser(prop);
+    Page page;
     protected HomePage homePage;
     protected LoginPage loginPage;
 
-
-
+    public LoginCucumberTest() {
+        this.page = PlaywrightFactory.getPage();
+        homePage = new HomePage(page);
+        loginPage = new LoginPage(page);
+    }
 
     @Given("User launched SwagLabs application")
     public void user_launched_swag_labs_application() {
 //        page.navigate("https://www.saucedemo.com/");
-        homePage = new HomePage(page);
-        loginPage = new LoginPage(page);
+
     }
     @When("User verify the Page title")
     public void user_verify_the_page_title() {
