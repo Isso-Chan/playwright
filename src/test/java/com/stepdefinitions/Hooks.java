@@ -2,13 +2,11 @@ package com.stepdefinitions;
 
 import com.factory.PlaywrightFactory;
 import com.microsoft.playwright.Page;
-import com.pages.HomePage;
-import com.pages.LoginPage;
+
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.Properties;
 

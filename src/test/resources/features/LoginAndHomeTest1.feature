@@ -8,5 +8,5 @@ Feature: Login
     Then User verify the product name "<ProductName>"
     Then User logout from the application
     Examples:
-      | UserName      | Password     | ProductName         |
+      | UserName      | Password     | ProductName              |
       | standard_user | secret_sauce | Sauce Labs Backpack |
