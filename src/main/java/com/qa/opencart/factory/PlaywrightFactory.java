@@ -20,7 +20,7 @@ public class PlaywrightFactory {
 	Browser browser;
 	BrowserContext browserContext;
 	Page page;
-	Properties prop;
+	static Properties prop;
 
 	private static ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();//ThreadLocal copies our browser
 	private static ThreadLocal<BrowserContext> tlBrowserContext = new ThreadLocal<>();
@@ -85,7 +85,7 @@ public class PlaywrightFactory {
 	/**
 	 * this method is used to initialize the properties from config file
 	 */
-	public Properties init_prop() {
+	public static Properties init_prop() {
 
 		try {
 			FileInputStream ip = new FileInputStream("./src/test/resources/config/config.properties");

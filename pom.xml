@@ -41,6 +41,19 @@
 			<version>${extentreports-version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>7.9.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>7.9.0</version>
+			<scope>test</scope>
+		</dependency>
+
 
 
 	</dependencies>
@@ -68,7 +81,7 @@
 					<reuseForks>true</reuseForks>
 <!--					<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>-->
 					<suiteXmlFiles>
-						<suiteXmlFile>src/test/resources/testrunners/testng_regressions.xml</suiteXmlFile>
+						<suiteXmlFile>cucumber_testng_regressions.xml</suiteXmlFile>
 						<!-- <suiteXmlFile>${suiteXmlFile}</suiteXmlFile> -->
 
 					</suiteXmlFiles>
