@@ -31,6 +31,6 @@ public class Hooks {
 //                    "image/png",
 //                    "screenshot_" + scenario.getName() + "_" + new Date().getTime());
 //        }
-        page.close();
+        page.context().browser().close();
     }
 }
