@@ -35,18 +35,7 @@
 		<version>6.9.1</version>
 		<scope>compile</scope>
 	</dependency>
-		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber4-adapter -->
-<!--		<dependency>-->
-<!--			<groupId>com.aventstack</groupId>-->
-<!--			<artifactId>extentreports-cucumber4-adapter</artifactId>-->
-<!--			<version>1.2.1</version>-->
-<!--		</dependency>-->
-		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
-<!--		<dependency>-->
-<!--			<groupId>com.aventstack</groupId>-->
-<!--			<artifactId>extentreports</artifactId>-->
-<!--			<version>5.0.6</version>-->
-<!--		</dependency>-->
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -58,11 +47,6 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.7</version>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.testng</groupId>-->
-<!--			<artifactId>testng</artifactId>-->
-<!--			<version>6.14.3</version>-->
-<!--		</dependency>-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>

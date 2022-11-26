@@ -8,9 +8,14 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features/",
         glue = {"com/stepdefinitions"},
-        plugin = {"pretty"},
+        plugin = {"pretty",
+        "json:target/MyReports/report.json",
+        "junit:target/MyReports/report-xml"},
         dryRun = false,
-        tags = "@all")
+        tags = "@all",
+        monochrome = false
+//        publish = true-> Instead of this line, cucumber.properties file was generated and "cucumber.publish.enabled=true" added
+)
 public class TestRunner {
 
 }
