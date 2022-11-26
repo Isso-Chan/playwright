@@ -9,6 +9,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
 import javax.xml.crypto.Data;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Properties;
 
@@ -33,7 +34,7 @@ public class Hooks {
     @After
     public void tearDown(Scenario scenario) {
         if (scenario.isFailed()) {
-            final byte[] screenshot = PlaywrightFactory.takeScreenshot().getBytes();
+            final byte[] screenshot = PlaywrightFactory.takeScreenshot().getBytes(StandardCharsets.UTF_8);
 //                    ((TakesScreenshot) MyDriver.get()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(
                     screenshot,
