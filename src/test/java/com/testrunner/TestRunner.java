@@ -8,9 +8,11 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features/",
         glue = {"com/stepdefinitions"},
-        plugin = {"pretty",
-                "json:target/ReportsFromCukesRunner/report.json",
-                "junit:target/ReportsFromCukesRunner/report-xml",
+        plugin = {
+//                "json:target/ReportsFromCukesRunner/report.json",
+//                "junit:target/ReportsFromCukesRunner/report-xml",
+                "pretty",
+                "json:target/cucumber.json",
                 "html:target/default-html-reports",
                 "rerun:target/rerun.txt",},
         dryRun = false,
