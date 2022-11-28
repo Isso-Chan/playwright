@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 //                "json:target/ReportsFromCukesRunner/report.json",
 //                "junit:target/ReportsFromCukesRunner/report-xml",
                 "pretty",
+                "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm",
                 "json:target/cucumber.json",
                 "html:target/default-html-reports",
                 "rerun:target/rerun.txt",},
