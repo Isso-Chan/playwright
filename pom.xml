@@ -115,7 +115,7 @@
                         -Dcucumber.options="--plugin io.qameta.allure.cucumberw6jvm.AllureCucumber6Jvm"
                     </argLine>
                     <systemPropertyVariables>
-                        <allure.results.directory>${project.build.directory}/target/allure-results</allure.results.directory>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
 <!--                        <allure.link.issue.pattern>https://example.org/browse/{}</allure.link.issue.pattern>-->
 <!--                        <allure.link.tms.pattern>https://example.org/browse/{}</allure.link.tms.pattern>-->
                     </systemPropertyVariables>

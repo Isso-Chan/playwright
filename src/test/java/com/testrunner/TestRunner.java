@@ -9,18 +9,12 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/",
         glue = {"com/stepdefinitions"},
         plugin = {
-//                "json:target/ReportsFromCukesRunner/report.json",
-//                "junit:target/ReportsFromCukesRunner/report-xml",
                 "pretty",
                 "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm",
-                "json:target/cucumber.json",
-                "html:target/default-html-reports",
                 "rerun:target/rerun.txt",},
         dryRun = false,
         tags = "@all",
         monochrome = false
-//        publish = true-> Instead of this line, cucumber.properties file was generated and "cucumber.publish
-//        .enabled=true" added
 )
 public class TestRunner {
 
