@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
         plugin = {
                 "pretty",
                 "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm",
+                "html:target/default-html-reports",
                 "rerun:target/rerun.txt",},
         dryRun = false,
         tags = "@all",

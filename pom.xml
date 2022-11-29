@@ -14,13 +14,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <cucumber.version>6.8.2</cucumber.version>
-        <!--Gets only one Browser, increase if you want to test with more browser at the same time-->
+        <!--Defines total thread, increase if you want to test with more browser at the same time-->
         <thread>4</thread>
         <isPerCPU>false</isPerCPU>
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber4-jvm -->
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber6-jvm -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber6-jvm</artifactId>
@@ -64,41 +64,7 @@
         </dependency>
     </dependencies>
     <build>
-        <!-- To create runnable Jar file of project
-        <finalName>executable-ProjectFile</finalName>
-        <resources>
-            <resource>
-                <directory>src/test/resources</directory>
-            </resource>
-        </resources>-->
         <plugins>
-            <!-- <plugin>
-                 <groupId>org.apache.maven.plugins</groupId>
-                 <artifactId>maven-assembly-plugin</artifactId>
-                 <version>2.2.1</version>
-                 <executions>
-                     <execution>
-                         <id>package-jar-with-dependencies</id>
-                         <phase>package</phase>
-                         <goals>
-                             <goal> single</goal>
-                         </goals>
-                         <configuration>
-                             <appendAssemblyId>false</appendAssemblyId>
-                             <descriptorRefs>
-                                 <descriptorRef>jar-with-dependencies</descriptorRef>
-                             </descriptorRefs>
-                             <archive>
-                                 <manifest>
-                                     <mainClass>de.OAMan.runners.TestRunner</mainClass>
-                                 </manifest>
-                             </archive>
-                         </configuration>
-                     </execution>
-                 </executions>
-             </plugin>-->
-
-            <!-- End of Jar file plugins-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -116,8 +82,8 @@
                     </argLine>
                     <systemPropertyVariables>
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-<!--                        <allure.link.issue.pattern>https://example.org/browse/{}</allure.link.issue.pattern>-->
-<!--                        <allure.link.tms.pattern>https://example.org/browse/{}</allure.link.tms.pattern>-->
+                        <allure.link.issue.pattern>https://example.org/browse/{}</allure.link.issue.pattern>
+                        <allure.link.tms.pattern>https://example.org/browse/{}</allure.link.tms.pattern>
                     </systemPropertyVariables>
                     <!-- Enables us parallel testing on more than one thread -->
                     <parallel>methods</parallel>
@@ -144,33 +110,6 @@
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>net.masterthought</groupId>
-                <artifactId>maven-cucumber-reporting</artifactId>
-                <version>5.0.0</version>
-                <executions>
-                    <execution>
-                        <id>execution</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <projectName>IssoChan HTML Reports</projectName>
-                            <outputDirectory>${project.build.directory}/myReports</outputDirectory>
-                            <inputDirectory>${project.build.directory}</inputDirectory>
-                            <jsonFiles>
-                                <param>**/*cucumber.json</param>
-                            </jsonFiles>
-                            <classificationFiles>
-                                <param>**/classifications/*.properties</param>
-                            </classificationFiles>
-
-                            <checkBuildResult>false</checkBuildResult>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

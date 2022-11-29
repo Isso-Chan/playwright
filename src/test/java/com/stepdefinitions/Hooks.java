@@ -1,19 +1,11 @@
 package com.stepdefinitions;
 
-import com.factory.PlaywrightFactory;
+import com.utilities.PlaywrightFactory;
 import com.microsoft.playwright.Page;
-import com.pages.HomePage;
-import com.pages.LoginPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import io.qameta.allure.Allure;
 
-import javax.xml.crypto.Data;
-import java.io.ByteArrayInputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Base64;
 import java.util.Date;
 import java.util.Properties;
 

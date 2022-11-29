@@ -1,18 +1,13 @@
 package com.stepdefinitions;
 
-import com.factory.PlaywrightFactory;
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserType;
+import com.utilities.PlaywrightFactory;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
 import com.pages.HomePage;
 import com.pages.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-
-import java.util.Properties;
 
 
 public class LoginCucumberTest {
