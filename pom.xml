@@ -39,20 +39,12 @@
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
-<!--        <dependency>-->
-<!--            <groupId>io.cucumber</groupId>-->
-<!--            <artifactId>cucumber-testng</artifactId>-->
-<!--            <version>${cucumber.version}</version>-->
-<!--&lt;!&ndash;            <scope>test</scope>&ndash;&gt;-->
-<!--        </dependency>-->
-
-
-        <!-- Selenium -->
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- TestNG -->
@@ -75,8 +67,6 @@
             <artifactId>extentreports-testng-adapter</artifactId>
             <version>1.2.2</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
@@ -96,7 +86,7 @@
                 <version>${maven.surefire.plugin.version}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/java/com/testrunner/testNG.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
