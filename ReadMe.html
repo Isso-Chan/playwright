@@ -1,0 +1,17 @@
+
+This hybrid framework was created to execute both TestNG and cucumber tests
+
+
+There is a TESTRUNNER package for runners. To execute;
+    - TestNG tests: can be executed by running "testng-resgressions.xml". It enables parallel testing
+    - Cucumber tests:
+        - They can be executed by running "CucumberTestsRunner" class. Runs tests one-by-one
+        - By using maven -> mvn verify. This will enables parallel testing
+
+
+There is only one target folder for RESULTS.
+    -TestNG test results will be saved under "target/TestNGTestsResults/".
+    -There are 2 alternatives for Cucumber test results.
+        - If tests are executed by starting on "CucumberTestsRunner" class, then just a default-html-report
+          file will be generated under target folder
+        - If tests are executed By using maven, then they will be saved under "target/CucumberTestsReports/"
