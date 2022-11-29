@@ -6,6 +6,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
@@ -24,13 +25,13 @@ public class Hooks {
     }
     @After
     public void tearDown(Scenario scenario) {
-//        if (scenario.isFailed()) {
-//            final byte[] screenshot = PlaywrightFactory.takeScreenshot().getBytes();
-//            scenario.attach(
-//                    screenshot,
-//                    "image/png",
-//                    "screenshot_" + scenario.getName() + "_" + new Date().getTime());
-//        }
+        if (scenario.isFailed()) {
+            final byte[] screenshot = page.screenshot();
+            scenario.attach(
+                    screenshot,
+                    "image/png",
+                    "screenshot_" + scenario.getName() + "_" + Calendar.getInstance().getTime());
+        }
         page.context().browser().close();
     }
 }

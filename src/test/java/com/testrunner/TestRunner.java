@@ -8,8 +8,12 @@ import org.testng.annotations.Listeners;
 @CucumberOptions(tags = "@all",
         features = {"src/test/resources/features/"},
         glue = {"com/stepdefinitions"},
-        plugin =  {})
-@Listeners({ExtentReportListener.class})
-public class TestRunner extends AbstractTestNGCucumberTests{
+        plugin = {
+                "json:target/cucumber.json",
+                "html:target/default-html-reports",
+                "pretty"
+})
+//@Listeners({ExtentReportListener.class})
+public class TestRunner extends AbstractTestNGCucumberTests {
 
 }
