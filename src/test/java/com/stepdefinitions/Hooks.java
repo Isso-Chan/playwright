@@ -32,11 +32,14 @@ public class Hooks {
     @After
     public void tearDown(Scenario scenario) {
         if (scenario.isFailed()) {
-            final byte[] screenshot = PlaywrightFactory.takeScreenshot().getBytes();
+            //This part is for HTML reports
+            final byte[] screenshot = page.screenshot();
             scenario.attach(
                     screenshot,
                     "image/png",
                     "screenshot_" + scenario.getName() + "_" + Calendar.getInstance().getTime());
+
+            //This line is for ExtendTestManager to set screenshot into the report
             ExtentTestManager.getTest().addScreenCaptureFromBase64String(PlaywrightFactory.takeScreenshot());
         }
         page.context().browser().close();
