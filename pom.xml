@@ -5,11 +5,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>PlaywrightPOMSeries</groupId>
-    <artifactId>PlaywrightPOMSeries</artifactId>
+    <groupId>Playwright-Cucumber-TestNG</groupId>
+    <artifactId>Playwright-Cucumber-TestNG</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>PlaywrightCucumberTests</name>
+    <name>Playwright-Cucumber-TestNG-Tests</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -81,13 +81,6 @@
                 <version>2.20</version>
 
                 <configuration>
-                    <forkCount>3</forkCount>
-                    <reuseForks>true</reuseForks>
-                    <!--					<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>-->
-<!--                    <suiteXmlFiles>-->
-<!--                        <suiteXmlFile>cucumber_testng_regressions.xml</suiteXmlFile>-->
-<!--                        &lt;!&ndash; <suiteXmlFile>${suiteXmlFile}</suiteXmlFile> &ndash;&gt;-->
-<!--                    </suiteXmlFiles>-->
                     <!-- Enables us parallel testing on more than one thread -->
                     <parallel>methods</parallel>
                     <threadCount>${thread}</threadCount>
