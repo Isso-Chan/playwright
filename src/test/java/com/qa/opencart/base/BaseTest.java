@@ -34,7 +34,7 @@ public class BaseTest {
 
 		prop = pf.init_prop();
 
-		if (browserName != null) {//if browser is defined inside xml file, then use it, otherwise use the one defined in config.properties file
+		if (browserName != null) {//if browser is defined inside xml file, then use it, otherwise use the one defined in configuration.properties file
 			prop.setProperty("browser", browserName);
 		}
 

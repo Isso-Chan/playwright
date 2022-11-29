@@ -19,7 +19,7 @@ import static com.qa.opencart.factory.PlaywrightFactory.takeScreenshot;
 
 public class ExtentReportListener implements ITestListener {
 
-	private static final String OUTPUT_FOLDER = "./target/ExtendReportListenersResults/";//Rapor burada olusturuluyor
+	private static final String OUTPUT_FOLDER = "./target/TestNGTestsResults/";//Rapor burada olusturuluyor
 	private static final String FILE_NAME = "TestExecutionReport.html";
 
 	private static ExtentReports extent = init();

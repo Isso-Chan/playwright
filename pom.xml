@@ -120,7 +120,7 @@
                         </goals>
                         <configuration>
                             <projectName>XYZ HTML Reports</projectName>
-                            <outputDirectory>${project.build.directory}/myReports</outputDirectory>
+                            <outputDirectory>${project.build.directory}/CucumberTestsReports</outputDirectory>
                             <inputDirectory>${project.build.directory}</inputDirectory>
                             <jsonFiles>
                                 <param>**/*cucumber.json</param>
