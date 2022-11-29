@@ -1,4 +1,4 @@
-package com.qa.opencart.factory;
+package com.factory;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,12 +15,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 
 public class PlaywrightFactory {
-
-	Playwright playwright;
-	Browser browser;
-	BrowserContext browserContext;
-	Page page;
-	Properties prop;
+	static Properties prop;
 
 	private static ThreadLocal<Browser> tlBrowser = new ThreadLocal<>();//ThreadLocal copies our browser
 	private static ThreadLocal<BrowserContext> tlBrowserContext = new ThreadLocal<>();
@@ -46,7 +41,7 @@ public class PlaywrightFactory {
 	public Page initBrowser(Properties prop) {
 
 		String browserName = prop.getProperty("browser").trim();
-		System.out.println("browser name is : " + browserName);
+		System.out.println("Browser name is : " + browserName);
 
 		// playwright = Playwright.create();
 		tlPlaywright.set(Playwright.create());//set a local copy of Playwright
@@ -77,7 +72,7 @@ public class PlaywrightFactory {
 
 		tlBrowserContext.set(getBrowser().newContext());
 		tlPage.set(getBrowserContext().newPage());
-		getPage().navigate(prop.getProperty("url").trim());
+//		getPage().navigate(prop.getProperty("url").trim());
 		return getPage();
 
 	}
@@ -85,10 +80,10 @@ public class PlaywrightFactory {
 	/**
 	 * this method is used to initialize the properties from config file
 	 */
-	public Properties init_prop() {
+	public static Properties init_prop() {
 
 		try {
-			FileInputStream ip = new FileInputStream("./src/test/resources/config/config.properties");
+			FileInputStream ip = new FileInputStream("src/test/resources/config/config.properties");
 			prop = new Properties();
 			prop.load(ip);
 		} catch (FileNotFoundException e) {
@@ -107,13 +102,11 @@ public class PlaywrightFactory {
 	 */
 
 	public static String takeScreenshot() {
-		String path = System.getProperty("user.dir") + "/target/screenshot/" + System.currentTimeMillis() + ".png";
-		//getPage().screenshot(new Page.ScreenshotOptions().setPath(Paths.get(path)).setFullPage(true));
+		String path = System.getProperty("user.dir") + "/target/Reports/Screenshots/" + System.currentTimeMillis() + ".png";
 		
 		byte[] buffer = getPage().screenshot(new Page.ScreenshotOptions().setPath(Paths.get(path)).setFullPage(true));
-		String base64Path = Base64.getEncoder().encodeToString(buffer);//Base64, Jenkins'te raporlama type icin gerekiyor. Yoksa orada hata veriyor
-		
-		return base64Path;
+
+		return Base64.getEncoder().encodeToString(buffer);
 	}
 
 }
