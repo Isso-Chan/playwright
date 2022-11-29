@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Nov 29 07:45:43 CET 2022","Tue Nov 29 07:45:50 CET 2022","6851","","Login","","Login to SwagLabs Application with Correct credentials","","Login to SwagLabs Application with Correct credentials",""
+"failed","Tue Nov 29 07:45:31 CET 2022","Tue Nov 29 07:45:43 CET 2022","11670","","Login","","Login to SwagLabs Application with Correct credentials","","Login to SwagLabs Application with Correct credentials",""

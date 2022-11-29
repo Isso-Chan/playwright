@@ -7,9 +7,13 @@ import com.pages.LoginPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.qameta.allure.Allure;
 
 import javax.xml.crypto.Data;
+import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.Date;
 import java.util.Properties;
 
@@ -34,8 +38,8 @@ public class Hooks {
     @After
     public void tearDown(Scenario scenario) {
         if (scenario.isFailed()) {
-            final byte[] screenshot = PlaywrightFactory.takeScreenshot().getBytes(StandardCharsets.UTF_8);
-//                    ((TakesScreenshot) MyDriver.get()).getScreenshotAs(OutputType.BYTES);
+            byte[] screenshot = page.screenshot();
+//                    ((TakesScreenshot) MyDriver.get()).getScreenshotAs(OutputType.BYTES); This line is for Selenium
             scenario.attach(
                     screenshot,
                     "image/png",
