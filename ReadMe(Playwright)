@@ -1,0 +1,15 @@
+
+If you want to work with Playwright locators on chromium;
+
+First open CMD and navigate to project folder
+
+Then execute following commands;
+
+1- USAGE:
+    mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI
+
+2- Install ALL browsers and dependencies
+    mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install"
+
+3- Start playwright and CODE GENERATOR-> Open a browser and navigate to "wikipedia.org"
+    mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="codegen wikipedia.org"
