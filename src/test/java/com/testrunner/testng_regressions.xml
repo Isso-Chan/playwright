@@ -16,10 +16,10 @@
 		</classes>
 	</test>
 
-	<test name="Open Cart Login Page Test_safari">
+	<test name="Cucumber Tests_chromium">
 		<parameter name="browser" value="chromium" />
 		<classes>
-			<class name="com.qa.opencart.tests.LoginPageTest" />
+			<class name="com.testrunner.CucumberTestsRunner" />
 		</classes>
 	</test>
 
