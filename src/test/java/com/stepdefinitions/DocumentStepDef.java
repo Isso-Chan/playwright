@@ -36,7 +36,7 @@ public class DocumentStepDef {
 //        assertThat(page).hasURL("https://auth.oaman-dev.computacenter.io/auth/realms/oaman-ext-broker/protocol/openid-connect/auth?client_id=broker&redirect_uri=https://enroll-api.oaman-dev.computacenter.io/oaman&scope=openid%20profile%20email%20offline_access&response_type=code&loginType=servicekonto&authnContextClassRef=EIDAS_HIGH");
         page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Service Konto Mock")).click();
 //        assertThat(page).hasURL("https://auth.oaman-dev.computacenter.io/auth/realms/oaman-ext-provider/protocol/openid-connect/auth?scope=openid&state=y7tm961MD2hJYpVTzF7VkxIkPuF_ngU4kicVa3V6bk8.mlv37rzPh6E.broker&response_type=code&client_id=broker&redirect_uri=https%3A%2F%2Fauth.oaman-dev.computacenter.io%2Fauth%2Frealms%2Foaman-ext-broker%2Fbroker%2Fkeycloak-oidc%2Fendpoint&nonce=mqf4L_DVeeX2hJiOsK7x0Q");
-        page.getByLabel("Username or email").fill("ekomm");
+        page.getByLabel("Username or email").fill("");
         page.getByLabel("Password").fill("ga?B=Zvi");
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign In")).click();
         logger.warn("Erika has logged in to OAMan");
